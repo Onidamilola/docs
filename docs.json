@@ -1,4 +1,5 @@
 {
+  "theme": "mint",
   "hideSidebar": true,
   "hideNavbar": true,
   "hideFooter": true,
@@ -9,7 +10,9 @@
         "groups": [
           {
             "group": "",
-            "pages": ["docs/assingning-priviledges.mdx.mdx"]
+            "pages": [
+              "docs/assingning-priviledges.mdx.mdx"
+            ]
           }
         ]
       }
