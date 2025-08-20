@@ -1,15 +1,21 @@
 {
   "theme": "mint",
+  "name": "Assigning Privileges",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
   "hideSidebar": true,
   "hideNavbar": true,
   "hideFooter": true,
   "navigation": {
     "tabs": [
       {
-        "tab": "",
+        "tab": "Assigning Privileges",
         "groups": [
           {
-            "group": "",
+            "group": "Privileges",
             "pages": [
               "docs/assingning-priviledges.mdx.mdx"
             ]
