@@ -1,0 +1,298 @@
+---
+title: "Assigning Privileges to a Role"
+description: "After assigning a role to a user, you can assign specific privileges to that role to control what the user can see and do in the application."
+mode: "wide"
+---
+
+## Roles & Privileges
+
+When a new user is created, they are assigned a **role**.\
+Each role comes with a set of **privileges** that determine what the user can see and do on the website.
+
+---
+
+## 1. Regular User Role
+
+Basic account management such as updating profile information, changing passwords, and viewing personal details.
+
+| **Role**     | **Description**                                                               | **Privileges**                                                                                                                                                                                                                                                                   |
+| ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Regular User | Can manage their own profile, change password, and view personal information. | `user:update:profile`, `user:update:password`, `user:view:id`, `enum:gender`, `enum:maritalStatus`, `enum:employmentType`, `enum:department`, `enum:documentType`, `enum:documentStatus`, `enum:exitType`, `enum:resignationStatus`, `enum:documentVisibility`, `enum:kycStatus` |
+
+---
+
+## 2. Document Uploader Role
+
+For users responsible for uploading and re-uploading documents, in addition to basic user permissions.
+
+| **Role**          | **Description**                                                              | **Privileges**                                                                                                                      |
+| ----------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Document Uploader | Can upload and re-upload documents, along with all Regular User permissions. | `document:upload`, `document:reupload`, `document:view:id`, `document:user:view`, `sample:document:view`, `sample:document:view:id` |
+
+---
+
+## 3. Document Verification Role (Verification Officer)
+
+For users responsible for verifying documents, updating document status, and uploading sample documents.
+
+| **Role**                      | **Description**                                                                                                                      | **Privileges**                                                                                                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Document Verification Officer | Can view and verify documents, update document status, and upload/re-upload sample documents. Includes all Regular User permissions. | `document:view`, `document:view:id`, `document:user:view`, `document:user:documents`, `document:status:update`, `sample:document:upload`, `sample:document:reupload`, `sample:document:view`, `sample:document:view:id` |
+
+---
+
+## 4. Admin Role
+
+For administrators responsible for managing user accounts, employee data, professional information, companies, and roles.
+
+| **Role** | **Description**                                                                                                     | **Privileges**                                                                                                                                                                                                                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Admin    | Can create and manage users, companies, roles, and professional information. Includes all Regular User permissions. | `user:create`, `user:reset-password`, `user:activate`, `user:view`, `user:admin:update`, `professional:information:create`, `professional:information:update`, `company:create`, `company:update`, `company:view`, `company:view:id`, `role:create`, `role:update`, `role:view`, `role:view:id`, `role:view:privileges` |
+
+---
+
+## 5. Super Admin Role
+
+Reserved for system super administrators with complete access to manage and configure all parts of the system.
+
+| **Role**    | **Description**                                                                                                                               | **Privileges**                                                                                                                                           |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Super Admin | Has full system access, including user uploads, company creation, role assignments, and privilege management. Includes all Admin permissions. | `privilege:create`, `privilege:assign`, `privilege:get:role`, `privilege:delete:role`, `admin:dashboard`, `upload:user`, `upload:company`, `upload:role` |
+
+---
+
+# Privilege Comparison Matrix
+
+The table below shows which role has access to which privilege. ✅ = privilege included, ❌ = not included.  
+This includes both **API privileges** and **Sidebar menu privileges**.
+
+| **Privilege**                   | Regular User | Document Uploader | Document Verification | Manager | HR  | Admin | Super Admin |
+|----------------------------------|--------------|------------------|-----------------------|---------|-----|-------|-------------|
+| **USER MANAGEMENT**              |              |                  |                       |         |     |       |             |
+| user:update:profile              | ✅            | ✅                | ✅                     | ✅       | ✅   | ✅     | ✅           |
+| user:update:password             | ✅            | ✅                | ✅                     | ✅       | ✅   | ✅     | ✅           |
+| user:view:id                     | ✅            | ✅                | ✅                     | ✅       | ✅   | ✅     | ✅           |
+| enum:* (gender, status etc.)     | ✅            | ✅                | ✅                     | ✅       | ✅   | ✅     | ✅           |
+| user:create                      | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| user:reset-password              | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| user:activate                    | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| user:view                        | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| user:admin:update                | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| professional:information:*       | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| company:* (create, update)       | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| role:* (create, update, view)    | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| role:view:privileges             | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| privilege:create                 | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| privilege:assign                 | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| privilege:get:role               | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| privilege:delete:role            | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| admin:dashboard (sidebar)        | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| upload:user (sidebar)            | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| upload:company (sidebar)         | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| upload:role (sidebar)            | ❌            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| **DOCUMENT MANAGEMENT**          |              |                  |                       |         |     |       |             |
+| document:upload                  | ❌            | ✅                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| document:reupload                | ❌            | ✅                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| document:view:id                 | ❌            | ✅                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| document:user:view               | ❌            | ✅                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| document:user:documents          | ❌            | ❌                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| document:status:update           | ❌            | ❌                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| sample:document:upload           | ❌            | ❌                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| sample:document:reupload         | ❌            | ❌                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| sample:document:view             | ❌            | ✅                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| sample:document:view:id          | ❌            | ✅                | ✅                     | ❌       | ❌   | ❌     | ✅           |
+| **ATTENDANCE MODULE (sidebar)**  |              |                  |                       |         |     |       |             |
+| attendance:clock-in              | ✅            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| attendance:clock-out             | ✅            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| attendance:view (My Attendance)  | ✅            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| attendance:view:employee         | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| attendance:view:all (sidebar)    | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| attendance:update/delete         | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| attendance:upload (sidebar)      | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| **LEAVE MODULE (sidebar)**       |              |                  |                       |         |     |       |             |
+| leave:create (My Leave)          | ✅            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| leave:cancel                     | ✅            | ❌                | ❌                     | ❌       | ❌   | ❌     | ✅           |
+| leave:view:employee              | ✅            | ❌                | ❌                     | ✅       | ✅   | ✅     | ✅           |
+| leave:view:all (HR Leave)        | ❌            | ❌                | ❌                     | ❌       | ✅   | ✅     | ✅           |
+| manager-type (Team Leave)        | ❌            | ❌                | ❌                     | ✅       | ❌   | ✅     | ✅           |
+| leave-type:create/update (Leave Mgmt) | ❌        | ❌                | ❌                     | ❌       | ✅   | ✅     | ✅           |
+| **PERFORMANCE & EVALUATION (sidebar)** |         |                  |                       |         |     |       |             |
+| employee-evaluation:view (My Performance) | ✅    | ❌                | ❌                     | ❌       | ✅   | ✅     | ✅           |
+| manager-type (MG Perf Eval)      | ❌            | ❌                | ❌                     | ✅       | ❌   | ✅     | ✅           |
+| performance-indicator:create/update | ❌         | ❌                | ❌                     | ❌       | ✅   | ✅     | ✅           |
+| **LEADS & ACTIVITIES (sidebar)** |              |                  |                       |         |     |       |             |
+| create:lead (All Leads)          | ✅            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| get:all:leads                    | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| get:lead:id                      | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| update:lead                      | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| delete:lead                      | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| **PROJECTS & TASKS (sidebar)**   |              |                  |                       |         |     |       |             |
+| create:project (Project Dashboard) | ❌          | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| get:all:projects                 | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| create:task (My Tasks)           | ✅            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+| update:project/task/delete       | ❌            | ❌                | ❌                     | ❌       | ❌   | ✅     | ✅           |
+
+---
+
+
+## Module Privileges (Based on Sidebar Menu)
+
+### Attendance
+
+| **Privilege**            | Regular User          | Admin                                   | Super Admin |
+| ------------------------ | --------------------- | --------------------------------------- | ----------- |
+| attendance:view:employee | ✅ (sees "Attendance") | ✅                                       | ✅           |
+| attendance:upload        | ❌                     | ✅ (Internal/Outsourced Employee upload) | ✅           |
+| attendance:update/delete | ❌                     | ✅                                       | ✅           |
+| attendance:view:all      | ❌                     | ✅                                       | ✅           |
+
+### Leave
+
+| **Privilege**            | Regular User   | Manager          | HR             | Admin            | Super Admin |
+| ------------------------ | -------------- | ---------------- | -------------- | ---------------- | ----------- |
+| leave:view:employee      | ✅ ("My Leave") | ✅                | ✅              | ✅                | ✅           |
+| manager-type             | ❌              | ✅ ("Team Leave") | ❌              | ✅                | ✅           |
+| leave:view:all           | ❌              | ❌                | ✅ ("HR Leave") | ✅                | ✅           |
+| leave-type:create/update | ❌              | ❌                | ✅              | ✅ ("Leave Mgmt") | ✅           |
+
+### Performance Evaluation
+
+| **Privilege**                       | Regular User         | Manager            | HR | Admin | Super Admin |
+| ----------------------------------- | -------------------- | ------------------ | --- | ----- | ----------- |
+| employee-evaluation:view            | ✅ ("My Performance") | ❌                  | ✅  | ✅     | ✅           |
+| manager-type                        | ❌                    | ✅ ("MG Perf Eval") | ❌  | ✅     | ✅           |
+| performance-indicator:create/update | ❌                    | ❌                  | ✅  | ✅     | ✅           |
+
+### Projects & Tasks
+
+| **Privilege**              | Regular User   | Admin                   | Super Admin |
+| -------------------------- | -------------- | ----------------------- | ----------- |
+| get:all:projects           | ❌              | ✅                       | ✅           |
+| create:project             | ❌              | ✅ ("Project Dashboard") | ✅           |
+| create:task                | ✅ ("My Tasks") | ✅                       | ✅           |
+| update:project/task/delete | ❌              | ✅                       | ✅           |
+
+### Leads
+
+| **Privilege** | Regular User    | Admin | Super Admin |
+| ------------- | --------------- | ----- | ----------- |
+| create:lead   | ✅ ("All Leads") | ✅     | ✅           |
+
+---
+
+✅ This way your admin reading this can understand:
+
+- _What each privilege unlocks in the UI_
+- _Which menu item corresponds to which privilege_
+- _Which roles typically get the privilege_
+
+---
+
+## Attendance Module
+
+| **Privilege**              | **Description**                                  |
+| -------------------------- | ------------------------------------------------ |
+| `attendance:clock-in`      | Allows user to clock in.                         |
+| `attendance:clock-out`     | Allows user to clock out.                        |
+| `attendance:view:employee` | View attendance records for a specific employee. |
+| `attendance:view:id`       | View a specific attendance entry by ID.          |
+| `attendance:view`          | View own attendance calendar.                    |
+| `attendance:update`        | Update an existing attendance record.            |
+| `attendance:delete`        | Delete an attendance record.                     |
+| `attendance:view:all`      | View attendance records for all employees.       |
+| `attendance:upload`        | Upload attendance data (bulk import).            |
+
+---
+
+## Leave Module
+
+| **Privilege**         | **Description**                             |
+| --------------------- | ------------------------------------------- |
+| `leave:create`        | Create a leave request.                     |
+| `leave:view:employee` | View leave requests of a specific employee. |
+| `leave:view:id`       | View a leave request by ID.                 |
+| `leave:view:all`      | View all leave requests (admin/HR).         |
+| `leave:update`        | Update a leave request.                     |
+| `leave:delete`        | Delete a leave request.                     |
+| `leave:cancel`        | Cancel own leave request.                   |
+| `leave:review`        | Review and approve/reject leave.            |
+| `leave-type:view:all` | View all leave types.                       |
+| `leave-type:view:id`  | View a leave type by ID.                    |
+| `leave-type:create`   | Create new leave type.                      |
+| `leave-type:update`   | Update leave type.                          |
+| `leave-type:delete`   | Delete leave type.                          |
+
+---
+
+## Performance & Evaluation Module
+
+| **Privilege**                                  | **Description**                          |
+| ---------------------------------------------- | ---------------------------------------- |
+| `performance-indicator:view`                   | View all performance indicators.         |
+| `performance-indicator:view:id`                | View a performance indicator by ID.      |
+| `performance-indicator:create`                 | Create performance indicator.            |
+| `performance-indicator:update`                 | Update performance indicator.            |
+| `performance-indicator:delete`                 | Delete performance indicator.            |
+| `employee-evaluation:view`                     | View employee evaluations.               |
+| `employee-evaluation:view:id`                  | View evaluation by ID.                   |
+| `employee-evaluation:view:employee:id`         | View evaluation for a specific employee. |
+| `employee-evaluation:create`                   | Create new employee evaluation.          |
+| `performance-evaluation:view`                  | View performance evaluation reports.     |
+| `performance-evaluation:update-hr-note`        | Update HR notes in evaluation.           |
+| `performance-evaluation:evaluator-update`      | Evaluator updates evaluation.            |
+| `performance-evaluation:evaluator-update-many` | Bulk evaluator updates.                  |
+| `performance-evaluation:delete`                | Delete performance evaluation.           |
+| `hr-evaluation:update`                         | Update HR evaluation.                    |
+| `manager-evaluation:update`                    | Update manager evaluation.               |
+
+---
+
+## Leads & Activities Module
+
+| **Privilege**            | **Description**                      |
+| ------------------------ | ------------------------------------ |
+| `create:lead`            | Create a new lead.                   |
+| `get:all:leads`          | View all leads.                      |
+| `get:lead:id`            | View specific lead by ID.            |
+| `update:lead`            | Update an existing lead.             |
+| `delete:lead`            | Delete a lead.                       |
+| `create:activity`        | Create activity linked to a lead.    |
+| `get:activities:by:lead` | View activities for a specific lead. |
+| `update:activity`        | Update an activity.                  |
+| `delete:activity`        | Delete an activity.                  |
+| `get:all:activities`     | View all activities.                 |
+
+---
+
+## Projects & Tasks Module
+
+| **Privilege**            | **Description**                              |
+| ------------------------ | -------------------------------------------- |
+| `create:project`         | Create a new project.                        |
+| `get:all:projects`       | View all projects.                           |
+| `get:project:id`         | View project by ID.                          |
+| `update:project`         | Update project details.                      |
+| `delete:project`         | Delete project.                              |
+| `get:projects:by:member` | View projects assigned to a specific member. |
+| `create:task`            | Create new task in a project.                |
+| `get:tasks:by:project`   | View all tasks in a project.                 |
+| `get:task:id`            | View a task by ID.                           |
+| `update:task`            | Update task details.                         |
+| `delete:task`            | Delete task.                                 |
+
+---
+
+# Example Use Case
+
+- A **Regular Employee** might only have:
+  - `attendance:clock-in`, `attendance:clock-out`, `leave:create`, `leave:cancel`.
+- An **HR Officer** might have:
+  - All **Leave Module** privileges, `attendance:view:all`, `employee-evaluation:view`.
+- A **Project Manager** might have:
+  - All **Project & Task Module** privileges, plus `performance-evaluation:evaluator-update`.
+
+---
+
+## Troubleshooting
+
+\* If the user is not seeing the expected options or features, ensure that the role is correctly assigned to the user and that the privileges are correctly assigned to the role.
