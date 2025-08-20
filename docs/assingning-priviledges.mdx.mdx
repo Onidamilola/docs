@@ -17,7 +17,7 @@ Basic account management such as updating profile information, changing password
 
 | **Role**     | **Description**                                                               | **Privileges**                                                                                                                                                                                                                                                                   |
 | ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Regular User | Can manage their own profile, change password, and view personal information. | `user:update:profile`, `user:update:password`, `user:view:id`, `enum:gender`, `enum:maritalStatus`, `enum:employmentType`, `enum:department`, `enum:documentType`, `enum:documentStatus`, `enum:exitType`, `enum:resignationStatus`, `enum:documentVisibility`, `enum:kycStatus` |
+| Regular User | Can manage their own profile, change password, and view personal information. | `user:update:profile`, `user:update:password`, `user:view:id`, `enum:gender`, `enum:maritalStatus`, `enum:employmentType`, `enum:department`, `enum:documentType`, `enum:documentStatus`, `enum:exitType`, `enum:resignationStatus`, `enum:documentVisibility`, `enum:kycStatus`, `manager-type` |
 
 ---
 
@@ -157,11 +157,11 @@ This includes both **API privileges** and **Sidebar menu privileges**.
 
 ### Performance Evaluation
 
-| **Privilege**                       | Regular User         | Manager            | HR | Admin | Super Admin |
-| ----------------------------------- | -------------------- | ------------------ | --- | ----- | ----------- |
-| employee-evaluation:view            | ✅ ("My Performance") | ❌                  | ✅  | ✅     | ✅           |
-| manager-type                        | ❌                    | ✅ ("MG Perf Eval") | ❌  | ✅     | ✅           |
-| performance-indicator:create/update | ❌                    | ❌                  | ✅  | ✅     | ✅           |
+| **Privilege**                       | Regular User                     | Manager            | HR                               | Admin                            | Super Admin                       |
+| ----------------------------------- | -------------------------------- | ------------------ | -------------------------------- | -------------------------------- | --------------------------------- |
+| employee-evaluation:view            | ✅ ("My Performance")             | ❌                  | ✅ ("HR Performance Evaluation")  | ✅ ("HR Performance Evaluation")  | ✅ ("HR Performance Evaluation")   |
+| manager-type                        | ❌                                | ✅ ("MG Perf Eval") | ❌                                | ✅                                | ✅                                 |
+| performance-indicator:create/update | ❌                                | ✅ ("Performance Indicator")                 | ✅                                | ✅ ("Performance Indicator")                               | ✅  ("Performance Indicator")                               |
 
 ### Projects & Tasks
 
