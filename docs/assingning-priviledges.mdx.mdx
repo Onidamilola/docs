@@ -66,71 +66,88 @@ Reserved for system super administrators with complete access to manage and conf
 The table below shows which role has access to which privilege. ✅ = privilege included, ❌ = not included.  
 This includes both **API privileges** and **Sidebar menu privileges**.
 
-| **Privilege**                             | Regular User | Document Uploader | Document Verification | Manager | HR  | Admin | Super Admin |
-| ----------------------------------------- | ------------ | ----------------- | --------------------- | ------- | --- | ----- | ----------- |
-| **USER MANAGEMENT**                       |              |                   |                       |         |     |       |             |
-| user:update:profile                       | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
-| user:update:password                      | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
-| user:view:id                              | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
-| enum:\* (gender, status etc.)             | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
-| user:create                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| user:reset-password                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| user:activate                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| user:view                                 | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| user:admin:update                         | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| professional:information:\*               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| company:\* (create, update)               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| role:\* (create, update, view)            | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| role:view:privileges                      | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| privilege:create                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| privilege:assign                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| privilege:get:role                        | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| privilege:delete:role                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| admin:dashboard (sidebar)                 | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| upload:user (sidebar)                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| upload:company (sidebar)                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| upload:role (sidebar)                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| **DOCUMENT MANAGEMENT**                   |              |                   |                       |         |     |       |             |
-| document:upload                           | ❌           | ✅                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| document:reupload                         | ❌           | ✅                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| document:view:id                          | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| document:user:view                        | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| document:user:documents                   | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| document:status:update                    | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| sample:document:upload                    | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| sample:document:reupload                  | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| sample:document:view                      | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| sample:document:view:id                   | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
-| **ATTENDANCE MODULE (sidebar)**           |              |                   |                       |         |     |       |             |
-| attendance:clock-in                       | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| attendance:clock-out                      | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| attendance:view (My Attendance)           | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| attendance:view:employee                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| attendance:view:all (sidebar)             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| attendance:update/delete                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| attendance:upload (sidebar)               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| **LEAVE MODULE (sidebar)**                |              |                   |                       |         |     |       |             |
-| leave:create (My Leave)                   | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| leave:cancel                              | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
-| leave:view:employee                       | ✅           | ❌                | ❌                    | ✅      | ✅  | ✅    | ✅          |
-| leave:view:all (HR Leave)                 | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
-| manager-type (Team Leave)                 | ❌           | ❌                | ❌                    | ✅      | ❌  | ✅    | ✅          |
-| leave-type:create/update (Leave Mgmt)     | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
-| **PERFORMANCE & EVALUATION (sidebar)**    |              |                   |                       |         |     |       |             |
-| employee-evaluation:view (My Performance) | ✅           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
-| manager-type (MG Perf Eval)               | ❌           | ❌                | ❌                    | ✅      | ❌  | ✅    | ✅          |
-| performance-indicator:create/update       | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
-| **LEADS & ACTIVITIES (sidebar)**          |              |                   |                       |         |     |       |             |
-| create:lead (All Leads)                   | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| get:all:leads                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| get:lead:id                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| update:lead                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| delete:lead                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| **PROJECTS & TASKS (sidebar)**            |              |                   |                       |         |     |       |             |
-| create:project (Project Dashboard)        | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| get:all:projects                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| create:task (My Tasks)                    | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
-| update:project/task/delete                | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| **Privilege**                               | Regular User | Document Uploader | Document Verification | Manager | HR  | Admin | Super Admin |
+| ------------------------------------------- | ------------ | ----------------- | --------------------- | ------- | --- | ----- | ----------- |
+| **USER MANAGEMENT**                         |              |                   |                       |         |     |       |             |
+| `user:update:profile`                       | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
+| `user:update:password`                      | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
+| `user:view:id`                              | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
+| `enum:\* (gender, status etc.)`             | ✅           | ✅                | ✅                    | ✅      | ✅  | ✅    | ✅          |
+| `user:create`                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `user:reset-password`                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `user:activate`                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `user:view`                                 | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `user:admin:update`                         | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `professional:information:\*`               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `company:\* (create, update)`               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `role:\* (create, update, view)`            | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `role:view:privileges`                      | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `privilege:create`                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `privilege:assign`                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `privilege:get:role`                        | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `privilege:delete:role`                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `admin:dashboard (sidebar)`                 | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `upload:user (sidebar)`                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `upload:company (sidebar)`                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `upload:role (sidebar)`                     | ❌           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| **DOCUMENT MANAGEMENT**                     |              |                   |                       |         |     |       |             |
+| `document:upload`                           | ❌           | ✅                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `document:reupload`                         | ❌           | ✅                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `document:view:id`                          | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `document:user:view`                        | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `document:user:documents`                   | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `document:status:update`                    | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `sample:document:upload`                    | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `sample:document:reupload`                  | ❌           | ❌                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `sample:document:view`                      | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| `sample:document:view:id`                   | ❌           | ✅                | ✅                    | ❌      | ❌  | ❌    | ✅          |
+| **ATTENDANCE MODULE (sidebar)**             |              |                   |                       |         |     |       |             |
+| `attendance:clock-in`                       | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `attendance:clock-out`                      | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `attendance:view (My Attendance)`           | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `attendance:view:employee`                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `attendance:view:all (sidebar)`             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `attendance:update/delete`                  | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `attendance:upload (sidebar)`               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| **LEAVE MODULE (sidebar)**                  |              |                   |                       |         |     |       |             |
+| `leave:create (My Leave)`                   | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `leave:cancel`                              | ✅           | ❌                | ❌                    | ❌      | ❌  | ❌    | ✅          |
+| `leave:view:employee`                       | ✅           | ❌                | ❌                    | ✅      | ✅  | ✅    | ✅          |
+| `leave:view:all (HR Leave)`                 | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
+| `manager-type (Team Leave)`                 | ❌           | ❌                | ❌                    | ✅      | ❌  | ✅    | ✅          |
+| `leave-type:create/update (Leave Mgmt)`     | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
+| **PERFORMANCE & EVALUATION (sidebar)**      |              |                   |                       |         |     |       |             |
+| `employee-evaluation:view (My Performance)` | ✅           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
+| `manager-type (MG Perf Eval)`               | ❌           | ❌                | ❌                    | ✅      | ❌  | ✅    | ✅          |
+| `performance-indicator:create/update`       | ❌           | ❌                | ❌                    | ❌      | ✅  | ✅    | ✅          |
+| **LEADS & ACTIVITIES (sidebar)**            |              |                   |                       |         |     |       |             |
+| `create:lead (All Leads)`                   | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `get:all:leads`                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `get:lead:id`                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `update:lead`                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `delete:lead`                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| **PROJECTS & TASKS (sidebar)**              |              |                   |                       |         |     |       |             |
+| `create:project (Project Dashboard)`        | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `get:all:projects`                          | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `create:task (My Tasks)`                    | ✅           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `update:project/task/delete`                | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| **TICKET MANAGEMENT (sidebar)**             |              |                   |                       |         |     |       |             |
+| `Ticket:create`                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:admin:create`                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:view:all`                           | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:view:employee`                      | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:view:id`                            | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:update`                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:assign`                             | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:escalate`                           | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:reassign`                           | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:reply:create`                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:reply:view`                         | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:reply:update`                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:reply:delete`                       | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:close`                              | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:logs`                               | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
+| `Ticket:view:created:by`                    | ❌           | ❌                | ❌                    | ❌      | ❌  | ✅    | ✅          |
 
 ---
 
@@ -223,6 +240,14 @@ The following tables break down the privileges by module, showing what each role
 | **Privilege** | Regular User     | Admin | Super Admin |
 | ------------- | ---------------- | ----- | ----------- |
 | get:all:leads | ✅ ("All Leads") | ✅    | ✅          |
+
+### Tickets
+
+| **Privilege**          | Regular User | Agent                | Employee                | Admin                | Super Admin |
+| ---------------------- | ------------ | -------------------- | ----------------------- | -------------------- | ----------- |
+| ticket:view:all        | ❌           | ❌                   | ❌                      | ✅ ("Admin Tickets") | ✅          |
+| ticket:view:employee   | ❌           | ✅ ("Agent Tickets") | ❌                      | ✅                   | ✅          |
+| ticket:view:created:by | ❌           | ❌                   | ✅ ("Employee Tickets") | ✅                   | ✅          |
 
 ---
 
