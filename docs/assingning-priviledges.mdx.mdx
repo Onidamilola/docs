@@ -353,6 +353,29 @@ The following tables break down the privileges by module, showing what each role
 
 ---
 
+## Ticket Management Module
+
+| **Privilege**            | **Description**                                                  |
+| ------------------------ | ---------------------------------------------------------------- |
+| `Ticket:create`          | Create a new ticket by any user.                                 |
+| `Ticket:admin:create`    | Create a new ticket with admin privileges, including assignment. |
+| `Ticket:view:all`        | View all tickets in the system.                                  |
+| `Ticket:view:employee`   | View tickets assigned to employees or agents.                    |
+| `Ticket:view:id`         | View details of a specific ticket by its ID.                     |
+| `Ticket:update`          | Update the details or status of an existing ticket.              |
+| `Ticket:assign`          | Assign a ticket to a user or agent.                              |
+| `Ticket:escalate`        | Escalate a ticket to a higher authority.                         |
+| `Ticket:reassign`        | Reassign a ticket to a different user or agent.                  |
+| `Ticket:reply:create`    | Create a reply or message in a ticket conversation.              |
+| `Ticket:reply:view`      | View replies or messages in a ticket conversation.               |
+| `Ticket:reply:update`    | Update an existing reply or message in a ticket conversation.    |
+| `Ticket:reply:delete`    | Delete a reply or message in a ticket conversation.              |
+| `Ticket:close`           | Close a resolved ticket.                                         |
+| `Ticket:logs`            | View the log history of a ticket.                                |
+| `Ticket:view:created:by` | View tickets created by the current user.                        |
+
+---
+
 # Example Use Case
 
 - A **Regular Employee** might only have:
